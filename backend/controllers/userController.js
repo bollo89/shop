@@ -21,7 +21,7 @@ const authUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(401);
-    throw new Error('Nieprawidłowy email lub hasło.');
+    throw new Error('Nieprawidłowy email lub hasło');
   }
 });
 
@@ -35,7 +35,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (userExists) {
     res.status(400);
-    throw new Error('Użytkownik już istnieje.');
+    throw new Error('Użytkownik już istnieje');
   }
 
   const user = await User.create({
@@ -64,7 +64,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 const logoutUser = (req, res) => {
   res.clearCookie('jwt');
-  res.status(200).json({ message: 'Wylogowano pomyślnie.' });
+  res.status(200).json({ message: 'Wylogowano pomyślnie' });
 };
 
 // @desc    Get user profile
@@ -82,7 +82,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('Użytkownik nie został znaleziony.');
+    throw new Error('Użytkownik nie został znaleziony');
   }
 });
 
@@ -110,7 +110,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(404);
-    throw new Error('User not found');
+    throw new Error('Użytkownik nie został znaleziony');
   }
 });
 

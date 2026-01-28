@@ -59,7 +59,7 @@ const ProductScreen = () => {
         comment,
       }).unwrap();
       refetch();
-      toast.success('Review created successfully');
+      toast.success('Opinia została dodana');
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -68,7 +68,7 @@ const ProductScreen = () => {
   return (
     <>
       <Link className='btn btn-light my-3' to='/'>
-        Go Back
+        Wróć
       </Link>
       {isLoading ? (
         <Loader />
@@ -94,9 +94,9 @@ const ProductScreen = () => {
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>
-                <ListGroup.Item>Price: {product.price} PLN</ListGroup.Item>
+                <ListGroup.Item>Cena: {product.price} PLN</ListGroup.Item>
                 <ListGroup.Item>
-                  Description: {product.description}
+                  Opis: {product.description}
                 </ListGroup.Item>
               </ListGroup>
             </Col>
@@ -105,7 +105,7 @@ const ProductScreen = () => {
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Price:</Col>
+                      <Col>Cena:</Col>
                       <Col>
                         <strong>{product.price} PLN</strong>
                       </Col>
@@ -115,7 +115,7 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                        {product.countInStock > 0 ? 'Dostępny' : 'Brak w magazynie'}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -124,7 +124,7 @@ const ProductScreen = () => {
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
-                        <Col>Qty</Col>
+                        <Col>Ilość</Col>
                         <Col>
                           <Form.Control
                             as='select'
@@ -151,7 +151,7 @@ const ProductScreen = () => {
                       disabled={product.countInStock === 0}
                       onClick={addToCartHandler}
                     >
-                      Add To Cart
+                      Dodaj do koszyka
                     </Button>
                   </ListGroup.Item>
                 </ListGroup>
@@ -160,8 +160,8 @@ const ProductScreen = () => {
           </Row>
           <Row className='review'>
             <Col md={6}>
-              <h2>Reviews</h2>
-              {product.reviews.length === 0 && <Message>No Reviews</Message>}
+              <h2>Opinie</h2>
+              {product.reviews.length === 0 && <Message>Brak opinii</Message>}
               <ListGroup variant='flush'>
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
@@ -172,14 +172,14 @@ const ProductScreen = () => {
                   </ListGroup.Item>
                 ))}
                 <ListGroup.Item>
-                  <h2>Write a Customer Review</h2>
+                  <h2>Dodaj opinię</h2>
 
                   {loadingProductReview && <Loader />}
 
                   {userInfo ? (
                     <Form onSubmit={submitHandler}>
                       <Form.Group className='my-2' controlId='rating'>
-                        <Form.Label>Rating</Form.Label>
+                        <Form.Label>Ocena</Form.Label>
                         <Form.Control
                           as='select'
                           required
@@ -187,15 +187,15 @@ const ProductScreen = () => {
                           onChange={(e) => setRating(e.target.value)}
                         >
                           <option value=''>Select...</option>
-                          <option value='1'>1 - Poor</option>
-                          <option value='2'>2 - Fair</option>
-                          <option value='3'>3 - Good</option>
-                          <option value='4'>4 - Very Good</option>
-                          <option value='5'>5 - Excellent</option>
+                          <option value='1'>1 - Słaby</option>
+                          <option value='2'>2 - Przeciętny</option>
+                          <option value='3'>3 - Dobry</option>
+                          <option value='4'>4 - Bardzo dobry</option>
+                          <option value='5'>5 - Doskonały</option>
                         </Form.Control>
                       </Form.Group>
                       <Form.Group className='my-2' controlId='comment'>
-                        <Form.Label>Comment</Form.Label>
+                        <Form.Label>Komentarz</Form.Label>
                         <Form.Control
                           as='textarea'
                           row='3'
@@ -209,12 +209,12 @@ const ProductScreen = () => {
                         type='submit'
                         variant='primary'
                       >
-                        Submit
+                        Wyślij
                       </Button>
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review
+                      Proszę <Link to='/login'>zaloguj się</Link>, aby dodać opinię
                     </Message>
                   )}
                 </ListGroup.Item>

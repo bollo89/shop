@@ -21,8 +21,6 @@ const Header = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      // NOTE: here we need to reset cart state for when a user logs out so the next
-      // user doesn't inherit the previous users cart and shipping
       dispatch(resetCart());
       navigate('/login');
     } catch (err) {
@@ -35,7 +33,7 @@ const Header = () => {
       <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
         <Container>
           <Navbar.Brand as={Link} to='/'>
-            <img src={logo} alt='ProShop' />
+            <img src={logo} alt='GamerShop' />
             GamerShop
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -63,7 +61,7 @@ const Header = () => {
                 </>
               ) : (
                 <Nav.Link as={Link} to='/login'>
-                  <FaUser /> Sign In
+                  <FaUser /> Zaloguj się
                 </Nav.Link>
               )}
 

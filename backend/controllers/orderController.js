@@ -86,14 +86,14 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   if (!verified) throw new Error('Płatność nie potwierdzona!');
 
   const isNewTransaction = await checkIfNewTransaction(Order, req.body.id);
-  if (!isNewTransaction) throw new Error('Transaction has been used before');
+  if (!isNewTransaction) throw new Error('Transakcja została już rozliczona');
 
   const order = await Order.findById(req.params.id);
 
   if (order) {
  
     const paidCorrectAmount = order.totalPrice.toString() === value;
-    if (!paidCorrectAmount) throw new Error('Incorrect amount paid');
+    if (!paidCorrectAmount) throw new Error('Nieprawidłowa kwota płatności');
 
     order.isPaid = true;
     order.paidAt = Date.now();
@@ -109,7 +109,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Order not found');
+    throw new Error('Zamówienie nie zostało znalezione');
   }
 });
 
@@ -129,7 +129,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     res.json(updatedOrder);
   } else {
     res.status(404);
-    throw new Error('Zamówienie nie znalezione');
+    throw new Error('Zamówienie nie zostało znalezione');
   }
 });
 

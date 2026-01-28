@@ -31,7 +31,7 @@ async function getPayPalAccessToken() {
     body,
   });
 
-  if (!response.ok) throw new Error('Failed to get access token');
+  if (!response.ok) throw new Error('Nie udało się uzyskać tokenu dostępu');
 
   const paypalData = await response.json();
 
@@ -81,7 +81,7 @@ export async function verifyPayPalPayment(paypalTransactionId) {
       },
     }
   );
-  if (!paypalResponse.ok) throw new Error('Failed to verify payment');
+  if (!paypalResponse.ok) throw new Error('Nie udało się zweryfikować płatności');
 
   const paypalData = await paypalResponse.json();
   return {

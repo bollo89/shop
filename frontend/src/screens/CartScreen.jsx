@@ -37,10 +37,10 @@ const CartScreen = () => {
   return (
     <Row>
       <Col md={8}>
-        <h1 style={{ marginBottom: '20px' }}>Shopping Cart</h1>
+        <h1 style={{ marginBottom: '20px' }}>Koszyk</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty <Link to='/'>Go Back</Link>
+            Twój koszyk jest pusty <Link to='/'>Wróć</Link>
           </Message>
         ) : (
           <ListGroup variant='flush'>
@@ -89,8 +89,8 @@ const CartScreen = () => {
           <ListGroup variant='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
-                items
+                Suma ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                szt.
               </h2>
               
               {cartItems
@@ -104,7 +104,7 @@ const CartScreen = () => {
                 disabled={cartItems.length === 0}
                 onClick={checkoutHandler} 
               >
-                Proceed To Checkout
+                Przejdź do kasy
               </Button>
             </ListGroup.Item>
           </ListGroup>

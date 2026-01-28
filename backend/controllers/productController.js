@@ -39,7 +39,7 @@ const getProductById = asyncHandler(async (req, res) => {
     // NOTE: this will run if a valid ObjectId but no product was found
     // i.e. product may be null
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produkt nie został znaleziony');
   }
 });
 
@@ -85,7 +85,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.json(updatedProduct);
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produkt nie został znaleziony');
   }
 });
 
@@ -97,10 +97,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
   if (product) {
     await Product.deleteOne({ _id: product._id });
-    res.json({ message: 'Product removed' });
+    res.json({ message: 'Produkt został usunięty' });
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produkt nie został znaleziony');
   }
 });
 
@@ -141,7 +141,7 @@ const createProductReview = asyncHandler(async (req, res) => {
     res.status(201).json({ message: 'Review added' });
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produkt nie został znaleziony');
   }
 });
 

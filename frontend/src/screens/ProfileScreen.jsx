@@ -33,7 +33,7 @@ const ProfileScreen = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
+      toast.error('Hasła się nie zgadzają');
     } else {
       try {
         const res = await updateProfile({
@@ -45,7 +45,7 @@ const ProfileScreen = () => {
           password,
         }).unwrap();
         dispatch(setCredentials({ ...res }));
-        toast.success('Profile updated successfully');
+        toast.success('Profil zaktualizowany');
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }
@@ -55,57 +55,57 @@ const ProfileScreen = () => {
   return (
     <Row>
       <Col md={3}>
-        <h2>User Profile</h2>
+        <h2>Profil użytkownika</h2>
 
         <Form onSubmit={submitHandler}>
           <Form.Group className='my-2' controlId='name'>
-            <Form.Label>Name</Form.Label>
+            <Form.Label>Imię i nazwisko</Form.Label>
             <Form.Control
               type='text'
-              placeholder='Enter name'
+              placeholder='Wpisz imię i nazwisko'
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group className='my-2' controlId='email'>
-            <Form.Label>Email Address</Form.Label>
+            <Form.Label>Adres e-mail</Form.Label>
             <Form.Control
               type='email'
-              placeholder='Enter email'
+              placeholder='Wpisz adres e-mail'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group className='my-2' controlId='password'>
-            <Form.Label>Password</Form.Label>
+            <Form.Label>Hasło</Form.Label>
             <Form.Control
               type='password'
-              placeholder='Enter password'
+              placeholder='Wpisz hasło'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
           <Form.Group className='my-2' controlId='confirmPassword'>
-            <Form.Label>Confirm Password</Form.Label>
+            <Form.Label>Potwierdź hasło</Form.Label>
             <Form.Control
               type='password'
-              placeholder='Confirm password'
+              placeholder='Potwierdź hasło'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             ></Form.Control>
           </Form.Group>
 
           <Button type='submit' variant='primary'>
-            Update
+            Zapisz
           </Button>
           {loadingUpdateProfile && <Loader />}
         </Form>
       </Col>
       <Col md={9}>
-        <h2>My Orders</h2>
+        <h2>Moje zamówienia</h2>
         {isLoading ? (
           <Loader />
         ) : error ? (
@@ -117,10 +117,10 @@ const ProfileScreen = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>DATE</th>
-                <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                <th>Data</th>
+                <th>Suma</th>
+                <th>Opłacone</th>
+                <th>Dostarczone</th>
                 <th></th>
               </tr>
             </thead>
@@ -151,7 +151,7 @@ const ProfileScreen = () => {
                       className='btn-sm'
                       variant='light'
                     >
-                      Details
+                      Szczegóły
                     </Button>
                   </td>
                 </tr>
